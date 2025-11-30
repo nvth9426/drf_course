@@ -10,4 +10,5 @@ urlpatterns = [
   path('products/info/', views.product_info, name='product_info'),
   # path('orders/', views.order_list, name='orders'),
   path('orders/', views.OrdertListAPIView.as_view()),
+  path('user-orders/', views.UserOrdertListAPIView.as_view()),
 ]
