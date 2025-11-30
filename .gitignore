@@ -1,5 +1,5 @@
 .venv/
 .env
-drf_course/__pycache__/
-api/migrations/
-api/__pycache__/
+__pycache__/
+**/migrations/
+staticfiles/
