@@ -1,9 +1,26 @@
 GET http://localhost:8000/products/ HTTP/1.1
 
 ###
+GET http://localhost:8000/products/1/ HTTP/1.1
+
+###
+DELETE http://localhost:8000/products/1/ HTTP/1.1
+
+###
+PUT http://localhost:8000/products/1/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Samsung Flat Screen Television",
+  "price": 3001.00,
+  "stock": 14,
+  "description": "An amazing new TV"
+}
+
+###
 POST http://localhost:8000/products/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Nzc3MDUyLCJpYXQiOjE3NjQ3NzY3NTIsImp0aSI6IjM4N2U4MzU5ODlmZDQ2NDQ4NGFjY2MzY2VjNTM1NDIyIiwidXNlcl9pZCI6IjEifQ.fvTsH-qxP9xdZskqrWmgzX05GEMXlJdxL_n_EaewE30
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Nzc3MjczLCJpYXQiOjE3NjQ3NzY5NzMsImp0aSI6IjQ3NTA4NGJlZjEyOTRiZjI4YjJkMjNmMjc1NTlmZmM4IiwidXNlcl9pZCI6IjIifQ.QcdfElMvm4xcKoc8ToR9KNLEArX-q8FOkSIWwWDONK8
 
 {
   "name": "Flat Screen Television",
@@ -19,4 +36,16 @@ Content-Type: application/json
 {
   "username": "john-doe",
   "password": "password"
+}
+
+###
+GET http://localhost:8000/user-orders/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Nzc3MjczLCJpYXQiOjE3NjQ3NzY5NzMsImp0aSI6IjQ3NTA4NGJlZjEyOTRiZjI4YjJkMjNmMjc1NTlmZmM4IiwidXNlcl9pZCI6IjIifQ.QcdfElMvm4xcKoc8ToR9KNLEArX-q8FOkSIWwWDONK8
+
+###
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NDg2NDg3NSwiaWF0IjoxNzY0Nzc4NDc1LCJqdGkiOiJiZmI2ZWUzY2E3ZWQ0ODQxYmU1OGMwNGZjYmNkYWRjNiIsInVzZXJfaWQiOiIyIn0.URlARWlHlwlnHw5qCNHWlpKyL2fsCD9WsXF4idrBAOc"
 }
