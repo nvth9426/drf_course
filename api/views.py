@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from api.filters import ProductFilter, InStockFilterBackend
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -58,19 +59,27 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
       self.permission_classes = [IsAdminUser]
     return super().get_permissions()
 
-class OrdertListAPIView(generics.ListCreateAPIView):
+class OrderViewSet(viewsets.ModelViewSet):
   queryset = Order.objects.prefetch_related('items__product')
   serializer_class = OrderSerializer
+  permission_classes = [AllowAny]
+  # overriding any pagination
+  pagination_class = None
 
-class UserOrdertListAPIView(generics.ListCreateAPIView):
-  queryset = Order.objects.prefetch_related('items__product')
-  serializer_class = OrderSerializer
-  permission_classes = [IsAuthenticated]
 
-  def get_queryset(self):
-    user = self.request.user
-    qs = super().get_queryset()
-    return qs.filter(user=self.request.user)
+# class OrdertListAPIView(generics.ListCreateAPIView):
+#   queryset = Order.objects.prefetch_related('items__product')
+#   serializer_class = OrderSerializer
+
+# class UserOrdertListAPIView(generics.ListCreateAPIView):
+#   queryset = Order.objects.prefetch_related('items__product')
+#   serializer_class = OrderSerializer
+#   permission_classes = [IsAuthenticated]
+
+#   def get_queryset(self):
+#     user = self.request.user
+#     qs = super().get_queryset()
+#     return qs.filter(user=self.request.user)
 
 class ProductInfoAPIView(APIView):
   def get(self, request):
