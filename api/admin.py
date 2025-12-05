@@ -9,5 +9,6 @@ class OrderAdmin(admin.ModelAdmin):
     OrderItemInline
   ]
 
-admin.site.register(Order, OrderAdmin)
 admin.site.register(User)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem)
