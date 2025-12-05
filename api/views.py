@@ -11,9 +11,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.filters import InStockFilterBackend, OrderFilter, ProductFilter
-from api.models import Order, Product
+from api.models import Order, Product, User
 from api.serializers import (OrderSerializer, ProductInfoSerializer,
-                             ProductSerializer, OrderCreateSerializer)
+                             ProductSerializer, OrderCreateSerializer, 
+                             UserSerializer)
 
 
 class ProductListAPIView(generics.ListCreateAPIView):
@@ -116,6 +117,11 @@ class ProductInfoAPIView(APIView):
     })
     return Response(serializer.data)
   
+class UserListView(generics.ListAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+  pagination_class = None
+
 # @api_view(['GET'])
 # def product_list(request):
 #   products = Product.objects.all()
